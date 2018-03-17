@@ -63,9 +63,9 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property if_search_80px_510919() As System.Drawing.Bitmap
+        Friend ReadOnly Property degradado2() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("if_search-80px_510919", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("degradado2", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -73,9 +73,9 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property inicio_fondo() As System.Drawing.Bitmap
+        Friend ReadOnly Property flechaDerecha() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("inicio_fondo", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("flechaDerecha", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -83,9 +83,9 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property inicio_fondo_spa() As System.Drawing.Bitmap
+        Friend ReadOnly Property flechaIzquierda() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("inicio_fondo_spa", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("flechaIzquierda", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -93,9 +93,19 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property spa_fondo_log() As System.Drawing.Bitmap
+        Friend ReadOnly Property logoSpa() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("spa_fondo_log", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("logoSpa", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property search() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("search", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

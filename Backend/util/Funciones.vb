@@ -1,5 +1,4 @@
-﻿Imports System.Drawing
-Imports System.Drawing.Drawing2D
+﻿
 Imports MySql.Data.MySqlClient
 
 Module Funciones
@@ -28,6 +27,12 @@ Module Funciones
         Return 0
     End Function
 
+    Public Function SafeGetTimeSpam(ByRef reader As MySqlDataReader, ByVal Index As Integer) As TimeSpan
+        If Not reader.IsDBNull(Index) Then
+            Return reader.GetTimeSpan(Index)
+        End If
+        Return Nothing
+    End Function
     Public Function SafeGetDate(ByRef reader As MySqlDataReader, ByVal Index As Integer) As Date
         If Not reader.IsDBNull(Index) Then
             Return reader.GetDateTime(Index)

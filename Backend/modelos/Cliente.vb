@@ -29,12 +29,12 @@
         End Set
     End Property
 
-    Private _ci As Integer
-    Public Property ci() As Integer
+    Private _ci As String
+    Public Property ci() As String
         Get
             Return _ci
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As String)
             _ci = value
         End Set
     End Property
@@ -60,6 +60,16 @@
         End Set
     End Property
 
+    Private _cel As String
+    Public Property cel() As String
+        Get
+            Return _cel
+        End Get
+        Set(ByVal value As String)
+            _cel = value
+        End Set
+    End Property
+
     Private _email As String
     Public Property email() As String
         Get
@@ -70,6 +80,17 @@
         End Set
     End Property
 
+
+    Private _sex As String
+    Public Property sex() As String
+        Get
+            Return _sex
+        End Get
+        Set(ByVal value As String)
+            _sex = value
+        End Set
+    End Property
+
     Private _fechaAlta As Date
     Public Property fechaAlta() As Date
         Get
@@ -77,6 +98,16 @@
         End Get
         Set(ByVal value As Date)
             _fechaAlta = value
+        End Set
+    End Property
+
+    Private _fechaNaci As Date
+    Public Property fechaNaci() As Date
+        Get
+            Return _fechaNaci
+        End Get
+        Set(ByVal value As Date)
+            _fechaNaci = value
         End Set
     End Property
 End Class

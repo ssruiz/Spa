@@ -47,10 +47,12 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -73,6 +75,49 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABM\Clientes\AgregarCliente.Designer.vb">
+      <DependentUpon>AgregarCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Clientes\AgregarCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\Clientes\ModificarCliente.Designer.vb">
+      <DependentUpon>ModificarCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Clientes\ModificarCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\Funciones.vb" />
+    <Compile Include="ABM\Personal\AgregarPersonal.Designer.vb">
+      <DependentUpon>AgregarPersonal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Personal\AgregarPersonal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\Personal\ModificarPersonal.Designer.vb">
+      <DependentUpon>ModificarPersonal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Personal\ModificarPersonal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\Servicios\AgregarServicio.Designer.vb">
+      <DependentUpon>AgregarServicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Servicios\AgregarServicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\Servicios\ModificarServicio.Designer.vb">
+      <DependentUpon>ModificarServicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Servicios\ModificarServicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AcercaDe.Designer.vb">
+      <DependentUpon>AcercaDe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AcercaDe.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Inicio.Designer.vb">
       <DependentUpon>Inicio.vb</DependentUpon>
     </Compile>
@@ -100,8 +145,71 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Operaciones\Agenda\Agenda.Designer.vb">
+      <DependentUpon>Agenda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\Agenda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\PasarInfo.vb" />
+    <Compile Include="Operaciones\Agenda\RealizarReserva.Designer.vb">
+      <DependentUpon>RealizarReserva.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\RealizarReserva.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\SeleccionarCliente.Designer.vb">
+      <DependentUpon>SeleccionarCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\SeleccionarCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\SeleccionarServicio.Designer.vb">
+      <DependentUpon>SeleccionarServicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\SeleccionarServicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\VisualizarReserva.Designer.vb">
+      <DependentUpon>VisualizarReserva.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\VisualizarReserva.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\Reservas\ReservasCliente.Designer.vb">
+      <DependentUpon>ReservasCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Reservas\ReservasCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="spaDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spaDataSet.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ABM\Clientes\AgregarCliente.resx">
+      <DependentUpon>AgregarCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\Clientes\ModificarCliente.resx">
+      <DependentUpon>ModificarCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\Personal\AgregarPersonal.resx">
+      <DependentUpon>AgregarPersonal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\Personal\ModificarPersonal.resx">
+      <DependentUpon>ModificarPersonal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\Servicios\AgregarServicio.resx">
+      <DependentUpon>AgregarServicio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\Servicios\ModificarServicio.resx">
+      <DependentUpon>ModificarServicio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AcercaDe.resx">
+      <DependentUpon>AcercaDe.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.vb</DependentUpon>
     </EmbeddedResource>
@@ -110,9 +218,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Agenda\Agenda.resx">
+      <DependentUpon>Agenda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Agenda\RealizarReserva.resx">
+      <DependentUpon>RealizarReserva.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Agenda\SeleccionarCliente.resx">
+      <DependentUpon>SeleccionarCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Agenda\SeleccionarServicio.resx">
+      <DependentUpon>SeleccionarServicio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Agenda\VisualizarReserva.resx">
+      <DependentUpon>VisualizarReserva.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Reservas\ReservasCliente.resx">
+      <DependentUpon>ReservasCliente.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -125,10 +251,24 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="spaDataSet.xsc">
+      <DependentUpon>spaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="spaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spaDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="spaDataSet.xss">
+      <DependentUpon>spaDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ABM\" />
+    <Folder Include="Operaciones\Compras\" />
+    <Folder Include="Operaciones\Ventas\" />
     <Folder Include="Resources\Iconos\" />
   </ItemGroup>
   <ItemGroup>
@@ -138,16 +278,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\spa_fondo_log.png" />
+    <None Include="Resources\logoSpa.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\inicio_fondo.png" />
+    <None Include="Resources\degradado2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\inicio_fondo_spa.png" />
+    <None Include="Resources\search.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\if_search-80px_510919.png" />
+    <None Include="Resources\flechaDerecha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flechaIzquierda.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

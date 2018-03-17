@@ -66,7 +66,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dao\ClienteDAO.vb" />
+    <Compile Include="dao\PersonalDAO.vb" />
+    <Compile Include="dao\ReservaDAO.vb" />
+    <Compile Include="dao\ServicioDAO.vb" />
     <Compile Include="modelos\Cliente.vb" />
+    <Compile Include="modelos\Personal.vb" />
+    <Compile Include="modelos\Reserva.vb" />
+    <Compile Include="modelos\Servicio.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

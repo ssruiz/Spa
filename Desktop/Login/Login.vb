@@ -1,10 +1,15 @@
 ﻿Imports Backend
 Public Class Login
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        txtUsuario.Focus()
+        'txtUsuario.Focus()
+
+        'Dim bm = New Bitmap(My.Resources.spa_fondo_log, New Size(Me.Width, Me.Height))
+        'Me.BackgroundImage = bm
+        txtUsuario.TabStop = False
+        txtPassw.TabStop = False
     End Sub
 
-    Private Sub btnIngresar_Click(sender As Object, e As EventArgs) Handles btnIngresar.Click
+    Private Sub btnIngresar_Click(sender As Object, e As EventArgs)
         conexion()
     End Sub
     Private Sub conexion()
@@ -15,9 +20,9 @@ Public Class Login
 
             Dim mdi As New Inicio
             lblAdvertencia.Text = ""
-            txtUsuario.Text = ""
-            txtPassw.Text = ""
-            txtUsuario.Focus()
+            Me.txtUsuario.Text = "usuario"
+            Me.txtPassw.Text = "contraseña"
+            txtPassw.UseSystemPasswordChar = False
 
             mdi.Show()
 
@@ -25,9 +30,10 @@ Public Class Login
 
             Me.lblAdvertencia.Visible = True
             Me.lblAdvertencia.Text = ex.Message
-            Me.txtUsuario.Text = ""
-            Me.txtPassw.Text = ""
+
+            Me.txtPassw.Text = "contraseña"
             Me.txtUsuario.Focus()
+            txtPassw.UseSystemPasswordChar = False
         End Try
     End Sub
 
@@ -40,7 +46,7 @@ Public Class Login
         End If
     End Sub
 
-    Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
+    Private Sub btnSalir_Click(sender As Object, e As EventArgs)
         Application.Exit()
 
     End Sub
@@ -48,4 +54,73 @@ Public Class Login
     Private Sub Login_VisibleChanged(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
         txtUsuario.Focus()
     End Sub
+
+    Private Sub txtUsuario_Click(sender As Object, e As EventArgs) Handles txtUsuario.Click, txtUsuario.Enter
+        If txtUsuario.Text = "usuario" Then
+            txtUsuario.Text = ""
+            txtUsuario.ForeColor = Color.Black
+            txtUsuario.TabStop = True
+            txtPassw.TabStop = True
+        End If
+    End Sub
+
+    Private Sub txtUsuario_Leave(sender As Object, e As EventArgs) Handles txtUsuario.Leave
+        If txtUsuario.Text = "" Then
+            txtUsuario.Text = "usuario"
+            txtUsuario.ForeColor = Color.DarkGray
+        Else
+            txtUsuario.ForeColor = Color.DimGray
+        End If
+    End Sub
+
+    Private Sub txtPassw_Enter(sender As Object, e As EventArgs) Handles txtPassw.GotFocus, txtPassw.Click
+
+        If txtPassw.Text = "contraseña" Then
+            txtPassw.UseSystemPasswordChar = True
+            txtPassw.Text = ""
+            sender.Font = New Font("Segoe UI Semibold", 12,
+                    FontStyle.Bold)
+            txtPassw.ForeColor = Color.Black
+        End If
+    End Sub
+
+    Private Sub txtPassw_Leave(sender As Object, e As EventArgs) Handles txtPassw.Leave
+        If txtPassw.Text = "" Then
+            txtPassw.UseSystemPasswordChar = False
+            txtPassw.Text = "contraseña"
+            txtPassw.ForeColor = Color.DarkGray
+        Else
+            txtPassw.ForeColor = Color.DarkGray
+        End If
+    End Sub
+
+    Private Sub RectangleShape3_Click(sender As Object, e As EventArgs) Handles RectangleShape3.Click
+        conexion()
+    End Sub
+
+    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles lblLogin.Click
+        conexion()
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        Application.Exit()
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub RectangleShape3_MouseMove(sender As Object, e As MouseEventArgs) Handles RectangleShape3.MouseMove, lblLogin.MouseMove
+        RectangleShape3.BackColor = Color.FromArgb(189, 48, 72)
+        lblLogin.BackColor = Color.FromArgb(189, 48, 72)
+        lblLogin.ForeColor = Color.White
+    End Sub
+
+    Private Sub RectangleShape3_MouseLeave(sender As Object, e As EventArgs) Handles RectangleShape3.MouseLeave
+        RectangleShape3.BackColor = Color.WhiteSmoke
+        lblLogin.BackColor = Color.WhiteSmoke
+        lblLogin.ForeColor = Color.FromArgb(32, 34, 36)
+    End Sub
+
+
 End Class
