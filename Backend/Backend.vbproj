@@ -10,7 +10,8 @@
     <AssemblyName>Backend</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,9 +71,14 @@
     <Compile Include="dao\ReservaDAO.vb" />
     <Compile Include="dao\ServicioDAO.vb" />
     <Compile Include="modelos\Cliente.vb" />
+    <Compile Include="modelos\Encargado.vb" />
+    <Compile Include="modelos\FichaM.vb" />
+    <Compile Include="modelos\Historial.vb" />
     <Compile Include="modelos\Personal.vb" />
     <Compile Include="modelos\Reserva.vb" />
+    <Compile Include="modelos\Reservap.vb" />
     <Compile Include="modelos\Servicio.vb" />
+    <Compile Include="modelos\SesionP.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

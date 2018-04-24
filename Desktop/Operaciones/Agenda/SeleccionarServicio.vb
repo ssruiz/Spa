@@ -36,7 +36,9 @@ Public Class SeleccionarServicio
             Dim s = listServicios.SelectedValue
             Dim n = listServicios.SelectedItem("Nombre").ToString
             servicio = s.ToString
-            info.cargarDato(s, n)
+            Dim daoS As New ServicioDAO
+            Dim list = daoS.obtenerServicioReserva(s)
+            info.cargarDato(list, n)
             RaiseEvent MessageSending(Me, info.tabla)
         Else
             MsgBox("Debe seleccionar un servicio para agregar", MsgBoxStyle.Critical, "Atención")

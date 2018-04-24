@@ -6,32 +6,33 @@ Public Class Agenda
     Dim dia_actual As Integer
     Dim fecha_actual As Date
     Dim citasDia As New Hashtable
+    Dim sesionesDia As New Hashtable
     Dim encargado
     Private Sub Agenda_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         contenedorPrincipal.SuspendLayout()
         cargarImagenes()
         cargarCalendario(Date.Today)
 
-        cargarEmpleados()
+        'cargarEmpleados()
 
         lblDiaSeleccionado.Text = "HOY (" + Date.Today.ToString("dddd") + " " + Date.Today + ")"
         contenedorPrincipal.ResumeLayout()
-        encargado = cbEmpleados.SelectedValue
+        'encargado = cbEmpleados.SelectedValue
     End Sub
 
-    Private Sub cargarEmpleados()
-        Try
-            cbEmpleados.SuspendLayout()
-            Dim daoEmpleados As New PersonalDAO
-            Dim list = daoEmpleados.getEmp()
-            cbEmpleados.DataSource = list.Tables("tabla")
-            cbEmpleados.DisplayMember = "Nombre"
-            cbEmpleados.ValueMember = "ID"
-            cbEmpleados.ResumeLayout()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
+    'Private Sub cargarEmpleados()
+    '    Try
+    '        cbEmpleados.SuspendLayout()
+    '        Dim daoEmpleados As New PersonalDAO
+    '        Dim list = daoEmpleados.getEmp()
+    '        cbEmpleados.DataSource = list.Tables("tabla")
+    '        cbEmpleados.DisplayMember = "Nombre"
+    '        cbEmpleados.ValueMember = "ID"
+    '        cbEmpleados.ResumeLayout()
+    '    Catch ex As Exception
+    '        MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
     Private Sub cargarImagenes()
         Dim bm = New Bitmap(My.Resources.flechaIzquierda, New Size(anterior.Width, anterior.Height))
         anterior.Image = bm
@@ -108,17 +109,31 @@ Public Class Agenda
             'Dim dia_aux = dia_actual.ToString + "/" + mes_actual.ToString + "/" + year_actual.ToString
             citasDia = New Hashtable
 
-            citasDia = daoR.cargarCitasDelDia(fecha_actual, encargado)
+            citasDia = daoR.cargarCitasDelDiaAgenda(fecha_actual)
             tblAgenda.SuspendLayout()
             For Each r As DictionaryEntry In citasDia
-                Dim reserva As Reserva = r.Value
+                Dim clientes As String = r.Value
                 Dim nombre = "cita" + r.Key.ToString
 
                 'Me.Controls("tblAgenda").Controls(nombre).Text = "aa"
                 Dim label = Me.Controls().Find(nombre, True)
                 Dim l = CType(label(0), Label)
 
-                l.Text = reserva.clienteNombre
+                l.Text = clientes
+                l.BackColor = Color.FromArgb(249, 232, 93)
+
+
+            Next
+            sesionesDia = daoR.cargarSesiones(fecha_actual)
+            For Each r As DictionaryEntry In sesionesDia
+                Dim clientes As String = r.Value
+                Dim nombre = "cita" + r.Key.ToString
+
+                'Me.Controls("tblAgenda").Controls(nombre).Text = "aa"
+                Dim label = Me.Controls().Find(nombre, True)
+                Dim l = CType(label(0), Label)
+
+                l.Text = l.Text + " - " + clientes
                 l.BackColor = Color.FromArgb(249, 232, 93)
 
 
@@ -199,20 +214,53 @@ Public Class Agenda
 
     Private Sub vaciarAgenda()
 
+        'For Each r As DictionaryEntry In citasDia
+        '    tblAgenda.SuspendLayout()
+        '    Dim reserva As Reserva = r.Value
+        '    Dim nombre = "cita" + r.Key.ToString
+
+        '    'Me.Controls("tblAgenda").Controls(nombre).Text = "aa"
+        '    Dim label = Me.Controls().Find(nombre, True)
+        '    Dim l = CType(label(0), Label)
+
+        '    l.Text = ""
+        '    l.BackColor = Color.Transparent
+        '    tblAgenda.ResumeLayout()
+
+        'Next
+        Dim aux = 0
         For Each r As DictionaryEntry In citasDia
-            tblAgenda.SuspendLayout()
-            Dim reserva As Reserva = r.Value
+            Dim clientes As String = r.Value
             Dim nombre = "cita" + r.Key.ToString
 
             'Me.Controls("tblAgenda").Controls(nombre).Text = "aa"
             Dim label = Me.Controls().Find(nombre, True)
             Dim l = CType(label(0), Label)
 
+
             l.Text = ""
             l.BackColor = Color.Transparent
-            tblAgenda.ResumeLayout()
+            aux += 1
 
         Next
+
+
+        For Each r As DictionaryEntry In sesionesDia
+            Dim clientes As String = r.Value
+            Dim nombre = "cita" + r.Key.ToString
+
+            'Me.Controls("tblAgenda").Controls(nombre).Text = "aa"
+            Dim label = Me.Controls().Find(nombre, True)
+            Dim l = CType(label(0), Label)
+
+
+            l.Text = ""
+            l.BackColor = Color.Transparent
+
+
+        Next
+
+
     End Sub
     Private Sub vaciarCalendario()
         calendario.SuspendLayout()
@@ -283,49 +331,47 @@ Public Class Agenda
         cargarCalendario(Date.Today)
     End Sub
 
-    Private Sub cita_click(sender As Object, e As EventArgs) Handles cita0.Click, cita9.Click, cita8.Click, cita7.Click, cita6.Click, cita5.Click, cita4.Click, cita3.Click, cita27.Click, cita26.Click, cita25.Click, cita24.Click, cita23.Click, cita22.Click, cita21.Click, cita20.Click, cita2.Click, cita19.Click, cita18.Click, cita17.Click, cita16.Click, cita15.Click, cita14.Click, cita13.Click, cita12.Click, cita11.Click, cita10.Click, cita1.Click
+    Private Sub cita_click(sender As Object, e As EventArgs) Handles cita0.Click, cita4.Click, cita3.Click, cita2.Click, cita13.Click, cita12.Click, cita11.Click, cita10.Click, cita9.Click, cita8.Click, cita7.Click, cita6.Click, cita5.Click, cita1.Click, cita14.Click
+
 
         Dim label = CType(sender, Label)
-        If label.Text = "" Then
-            Dim tagHora = label.Name
-            tagHora = tagHora.Remove(0, 4)
 
-            Dim reservas As New RealizarReserva
-            reservas.tagHora = tagHora
-            Dim dia_aux = dia_actual.ToString + "/" + mes_actual.ToString + "/" + year_actual.ToString
-            reservas.fecha = dia_aux
-            reservas.trabajador.nombre = cbEmpleados.SelectedItem.item("Nombre")
-            reservas.trabajador.id = cbEmpleados.SelectedItem.item("ID")
-            Dim result = reservas.ShowDialog()
-            If result = DialogResult.OK Then
-                vaciarAgenda()
-                vaciarCalendario()
-                cargarCalendario(dia_aux)
+        Dim tagHora = label.Name
+        tagHora = tagHora.Remove(0, 4)
 
-            End If
-            reservas.Dispose()
-        Else
-            Dim tagHora = label.Name
-            tagHora = tagHora.Remove(0, 4)
-            Dim reserva As Reserva = citasDia(CInt(tagHora))
-            Dim visualizar As New VisualizarReserva
-            visualizar.reserva = reserva
+        Dim reservas As New ReservasDelDia
+        reservas.tagHora = tagHora
+        Dim dia_aux = dia_actual.ToString + "/" + mes_actual.ToString + "/" + year_actual.ToString
+        reservas.fecha = dia_aux
+        'reservas.trabajador.nombre = cbEmpleados.SelectedItem.item("Nombre")
+        'reservas.trabajador.id = cbEmpleados.SelectedItem.item("ID")
+        Dim result = reservas.ShowDialog()
+        'If result = DialogResult.OK Then
+        '    vaciarAgenda()
+        '    vaciarCalendario()
+        '    cargarCalendario(dia_aux)
 
-            visualizar.ShowDialog()
-        End If
+        'End If
+        reservas.Dispose()
+
+        vaciarAgenda()
+        vaciarCalendario()
+        cargarCalendario(dia_aux)
+
+
 
     End Sub
 
-    Private Sub cbEmpleados_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbEmpleados.SelectionChangeCommitted
-        Try
-            encargado = cbEmpleados.SelectedValue
-            vaciarAgenda()
-            cargarCitas()
-        Catch ex As Exception
+    'Private Sub cbEmpleados_SelectedValueChanged(sender As Object, e As EventArgs)
+    '    Try
+    '        encargado = cbEmpleados.SelectedValue
+    '        vaciarAgenda()
+    '        cargarCitas()
+    '    Catch ex As Exception
 
-        End Try
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Private Sub RectangleShape1_MouseMove(sender As Object, e As MouseEventArgs) Handles RectangleShape1.MouseMove, lblHoy.MouseMove
         Me.SuspendLayout()

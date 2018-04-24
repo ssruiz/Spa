@@ -62,10 +62,10 @@ Partial Class AgregarServicio
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.78022!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.21978!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.73626!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.26373!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(751, 425)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(754, 387)
         Me.TableLayoutPanel1.TabIndex = 1
         '
         'Panel1
@@ -77,7 +77,7 @@ Partial Class AgregarServicio
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(751, 72)
+        Me.Panel1.Size = New System.Drawing.Size(754, 44)
         Me.Panel1.TabIndex = 0
         '
         'Label1
@@ -86,7 +86,7 @@ Partial Class AgregarServicio
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(24, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(281, 21)
+        Me.Label1.Location = New System.Drawing.Point(271, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(186, 30)
         Me.Label1.TabIndex = 0
@@ -109,15 +109,15 @@ Partial Class AgregarServicio
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(24, Byte), Integer))
-        Me.Panel2.Location = New System.Drawing.Point(0, 72)
+        Me.Panel2.Location = New System.Drawing.Point(0, 44)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(751, 292)
+        Me.Panel2.Size = New System.Drawing.Size(754, 282)
         Me.Panel2.TabIndex = 1
         '
         'txtDuracion
         '
-        Me.txtDuracion.Location = New System.Drawing.Point(462, 170)
+        Me.txtDuracion.Location = New System.Drawing.Point(584, 170)
         Me.txtDuracion.Name = "txtDuracion"
         Me.txtDuracion.Size = New System.Drawing.Size(120, 29)
         Me.txtDuracion.TabIndex = 4
@@ -129,7 +129,7 @@ Partial Class AgregarServicio
         Me.cbTipos.FormattingEnabled = True
         Me.cbTipos.Location = New System.Drawing.Point(106, 170)
         Me.cbTipos.Name = "cbTipos"
-        Me.cbTipos.Size = New System.Drawing.Size(201, 29)
+        Me.cbTipos.Size = New System.Drawing.Size(255, 29)
         Me.cbTipos.TabIndex = 3
         '
         'txtDesc
@@ -137,7 +137,7 @@ Partial Class AgregarServicio
         Me.txtDesc.Location = New System.Drawing.Point(462, 48)
         Me.txtDesc.Name = "txtDesc"
         Me.txtDesc.Size = New System.Drawing.Size(242, 87)
-        Me.txtDesc.TabIndex = 2
+        Me.txtDesc.TabIndex = 3
         Me.txtDesc.Text = ""
         '
         'txtCosto
@@ -145,8 +145,8 @@ Partial Class AgregarServicio
         Me.txtCosto.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCosto.Location = New System.Drawing.Point(106, 108)
         Me.txtCosto.Name = "txtCosto"
-        Me.txtCosto.Size = New System.Drawing.Size(201, 27)
-        Me.txtCosto.TabIndex = 1
+        Me.txtCosto.Size = New System.Drawing.Size(255, 27)
+        Me.txtCosto.TabIndex = 2
         Me.txtCosto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtNombre
@@ -154,7 +154,7 @@ Partial Class AgregarServicio
         Me.txtNombre.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNombre.Location = New System.Drawing.Point(106, 46)
         Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(201, 27)
+        Me.txtNombre.Size = New System.Drawing.Size(255, 27)
         Me.txtNombre.TabIndex = 1
         Me.txtNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -163,7 +163,7 @@ Partial Class AgregarServicio
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(24, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(357, 173)
+        Me.Label5.Location = New System.Drawing.Point(458, 173)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(80, 21)
         Me.Label5.TabIndex = 0
@@ -196,7 +196,7 @@ Partial Class AgregarServicio
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(24, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(357, 48)
+        Me.Label2.Location = New System.Drawing.Point(458, 24)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(100, 21)
         Me.Label2.TabIndex = 0
@@ -222,10 +222,10 @@ Partial Class AgregarServicio
         Me.Panel3.Controls.Add(Me.ShapeContainer2)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel3.Location = New System.Drawing.Point(0, 364)
+        Me.Panel3.Location = New System.Drawing.Point(0, 326)
         Me.Panel3.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(751, 61)
+        Me.Panel3.Size = New System.Drawing.Size(754, 61)
         Me.Panel3.TabIndex = 2
         '
         'lblCancelar
@@ -270,7 +270,7 @@ Partial Class AgregarServicio
         Me.ShapeContainer2.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer2.Name = "ShapeContainer2"
         Me.ShapeContainer2.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.RectangleShape1, Me.RectangleShape3, Me.RectangleShape2})
-        Me.ShapeContainer2.Size = New System.Drawing.Size(751, 61)
+        Me.ShapeContainer2.Size = New System.Drawing.Size(754, 61)
         Me.ShapeContainer2.TabIndex = 0
         Me.ShapeContainer2.TabStop = False
         '
@@ -305,7 +305,7 @@ Partial Class AgregarServicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(751, 425)
+        Me.ClientSize = New System.Drawing.Size(754, 387)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "AgregarServicio"

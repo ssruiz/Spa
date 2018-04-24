@@ -7,7 +7,7 @@ Public Class ServicioDAO
         Try
             Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD(Sesion.Usuario, Sesion.Password))
             con.Open()
-            Dim query = "SELECT * FROM listadoserviciosview"
+            Dim query = "SELECT * FROM listadoserviciosview WHERE Precio > 0"
             adp = New MySqlDataAdapter(query, con)
 
             ds.Tables.Add("tabla")
@@ -29,7 +29,28 @@ Public Class ServicioDAO
             Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD(Sesion.Usuario, Sesion.Password))
             'Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD("samuel", "system"))
             con.Open()
-            Dim query = "SELECT ID,Nombre FROM listadoserviciosview"
+            Dim query = "SELECT ID,Nombre FROM listadoserviciosview WHERE Precio > 0"
+            adp = New MySqlDataAdapter(query, con)
+
+            ds.Tables.Add("tabla")
+            adp.Fill(ds.Tables("tabla"))
+
+            con.Close()
+
+
+        Catch ex As Exception
+            Throw New DAOException(ex.ToString)
+        End Try
+        Return ds
+    End Function
+    Public Function cargarPaquetesNombre() As DataSet
+        Dim ds As New DataSet
+        Dim adp
+        Try
+            Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD(Sesion.Usuario, Sesion.Password))
+            'Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD("samuel", "system"))
+            con.Open()
+            Dim query = "SELECT `id_paquete` AS ID, `nombre_paquete` AS Nombre, `precio_paquete` AS Precio FROM `paquetes`;"
             adp = New MySqlDataAdapter(query, con)
 
             ds.Tables.Add("tabla")
@@ -44,6 +65,49 @@ Public Class ServicioDAO
         Return ds
     End Function
 
+    Public Function cargarPaqueteDetalle(ByVal id As String) As DataSet
+        Dim ds As New DataSet
+        Dim adp
+        Try
+            Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD(Sesion.Usuario, Sesion.Password))
+            'Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD("samuel", "system"))
+            con.Open()
+            Dim query = "SELECT * FROM paquetedetalleview where IDP = " & id & ""
+            adp = New MySqlDataAdapter(query, con)
+
+            ds.Tables.Add("tabla")
+            adp.Fill(ds.Tables("tabla"))
+
+            con.Close()
+
+
+        Catch ex As Exception
+            Throw New DAOException(ex.ToString)
+        End Try
+        Return ds
+    End Function
+
+    Public Function cargarSesiones(ByVal id As String) As DataSet
+        Dim ds As New DataSet
+        Dim adp
+        Try
+            Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD(Sesion.Usuario, Sesion.Password))
+            'Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD("samuel", "system"))
+            con.Open()
+            Dim query = "SELECT * FROM sesionesview where IDR = " & id & ""
+            adp = New MySqlDataAdapter(query, con)
+
+            ds.Tables.Add("tabla")
+            adp.Fill(ds.Tables("tabla"))
+
+            con.Close()
+
+
+        Catch ex As Exception
+            Throw New DAOException(ex.ToString)
+        End Try
+        Return ds
+    End Function
     Public Function getTipos() As DataSet
         Dim ds As New DataSet
         Dim da As New MySqlDataAdapter
@@ -110,6 +174,27 @@ Public Class ServicioDAO
             Throw New DAOException(ex.ToString)
         End Try
         Return servicio
+    End Function
+    Public Function obtenerServicioReserva(ByVal id As String) As DataSet
+        Dim ds As New DataSet
+        Try
+            Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD(Sesion.Usuario, Sesion.Password))
+            'Dim con As New MySqlConnection(ConexionDB.cadenaConexionBD("samuel", "system"))
+            con.Open()
+            Dim query = "SELECT id_serv AS ID,nombre_serv AS Nombre,precio_serv AS Precio from servicios where id_serv = @id"
+            Dim cmd As New MySqlCommand(query, con)
+            cmd.Parameters.AddWithValue("@id", id)
+            Dim adp As New MySqlDataAdapter(cmd)
+
+            ds.Tables.Add("tabla")
+            adp.Fill(ds.Tables("tabla"))
+
+
+            con.Close()
+        Catch ex As Exception
+            Throw New DAOException(ex.ToString)
+        End Try
+        Return ds
     End Function
 
     Public Sub actualizarServicio(ByVal servicio As Servicio)

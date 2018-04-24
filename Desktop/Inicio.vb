@@ -13,7 +13,7 @@ Public Class Inicio
 
     '' --------------------------------------------------- OPERACIONES DE CARGA ----------------------------------------------
     Private Sub Inicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.SuspendLayout()
+
         crearBackGrounds()
 
         list.Tables.Add("clientes")
@@ -25,7 +25,7 @@ Public Class Inicio
 
         dgvInicio.Font = New Font("Segoe UI Semibold", 12,
                     FontStyle.Bold)
-        Me.ResumeLayout()
+        Me.PerformLayout()
     End Sub
 
     Private Sub crearBackGrounds()
@@ -53,8 +53,8 @@ Public Class Inicio
             Me.SuspendLayout()
             If target <> "clientes" Then
                 target = "clientes"
-                lblReservas.Visible = True
-                RectangleShape1.Visible = True
+                lblFicha.Visible = True
+
                 If list.Tables("clientes").Rows.Count > 0 Then
                     dgvInicio.DataSource = ""
                     dgvInicio.DataSource = list.Tables("clientes")
@@ -137,8 +137,8 @@ Public Class Inicio
             If target <> "personal" Then
                 Me.SuspendLayout()
                 target = "personal"
-                lblReservas.Visible = False
-                RectangleShape1.Visible = False
+                lblFicha.Visible = False
+
                 If list.Tables("personal").Rows.Count = 0 Then
                     Dim daop As New PersonalDAO
                     adpPersonal = daop.cargarPersonal()
@@ -172,8 +172,8 @@ Public Class Inicio
         Try
             If target <> "servicios" Then
                 Me.SuspendLayout()
-                lblReservas.Visible = False
-                RectangleShape1.Visible = False
+                lblFicha.Visible = False
+
                 target = "servicios"
                 If list.Tables("servicios").Rows.Count = 0 Then
                     Dim daos As New ServicioDAO
@@ -238,7 +238,7 @@ Public Class Inicio
         Me.ResumeLayout()
     End Sub
 
-    Private Sub lblHovers(sender As Object, e As EventArgs) Handles lblSalir.MouseMove, lblClientes.MouseMove, lblPersonal.MouseMove, lblServicios.MouseMove, lblAgenda.MouseMove, lblSalir.MouseMove, lblVentas.MouseMove
+    Private Sub lblHovers(sender As Object, e As EventArgs) Handles lblSalir.MouseMove, lblClientes.MouseMove, lblPersonal.MouseMove, lblServicios.MouseMove, lblAgenda.MouseMove, lblSalir.MouseMove, lblVentas.MouseMove, lblReservas.MouseMove, lblReportes.MouseMove
         Me.SuspendLayout()
         'sender.BackColor = Color.FromArgb(116, 142, 47)
         sender.BackColor = Color.FromArgb(24, 25, 27)
@@ -249,7 +249,7 @@ Public Class Inicio
         Me.ResumeLayout()
     End Sub
 
-    Private Sub lblUnhover(sender As Object, e As EventArgs) Handles lblServicios.MouseLeave, lblSalir.MouseLeave, lblPersonal.MouseLeave, lblClientes.MouseLeave, lblAgenda.MouseLeave, lblVentas.MouseLeave
+    Private Sub lblUnhover(sender As Object, e As EventArgs) Handles lblServicios.MouseLeave, lblSalir.MouseLeave, lblPersonal.MouseLeave, lblClientes.MouseLeave, lblAgenda.MouseLeave, lblVentas.MouseLeave, lblReservas.MouseLeave, lblReportes.MouseLeave
         Me.SuspendLayout()
         sender.BackColor = Color.Transparent
         sender.Font = New Font("Segoe UI Semibold", 12,
@@ -277,7 +277,7 @@ Public Class Inicio
         End If
     End Sub
 
-    Private Sub btnActualizar_Click(sender As Object, e As EventArgs) Handles lblActualizar.Click, rectActualizar.Click
+    Private Sub btnActualizar_Click(sender As Object, e As EventArgs) Handles lblActualizar.Click
         Try
             If target = "clientes" Then
                 Dim dao As New ClienteDAO
@@ -312,7 +312,7 @@ Public Class Inicio
     ''--------------------------------------------------- OPERACIONES COMUNES ---------------------------------------
 
 
-    Private Sub lblNuevo_Click(sender As Object, e As EventArgs) Handles lblNuevo.Click, rectAgregar.Click
+    Private Sub lblNuevo_Click(sender As Object, e As EventArgs) Handles lblNuevo.Click
 
         If target = "clientes" Then
             Dim nuevoCliente As New AgregarCliente
@@ -342,7 +342,7 @@ Public Class Inicio
 
 
     '' OPERACIONES COMUNES CONTROLADAS POR MISMOS CONTROLADOR
-    Private Sub rectModificar_Click(sender As Object, e As EventArgs) Handles rectModificar.Click, lblModificar.Click
+    Private Sub rectModificar_Click(sender As Object, e As EventArgs) Handles lblModificar.Click
         Try
             If target = "clientes" Then
 
@@ -444,57 +444,24 @@ Public Class Inicio
     End Sub
 
 
-    Private Sub agregar_MouseMove(sender As Object, e As MouseEventArgs) Handles rectAgregar.MouseMove, lblNuevo.MouseMove
-        'CType(sender, ).BackColor = Color.FromArgb(189, 48, 72)
-        rectAgregar.BackColor = Color.FromArgb(189, 48, 72)
-        lblNuevo.BackColor = Color.FromArgb(189, 48, 72)
-        lblNuevo.ForeColor = Color.White
+    Private Sub hovers_botones(sender As Object, e As MouseEventArgs) Handles lblNuevo.MouseMove, lblModificar.MouseMove, lblActualizar.MouseMove, lblFicha.MouseMove
+        Dim lbl = CType(sender, Label)
+        lbl.ForeColor = Color.WhiteSmoke
     End Sub
 
-    Private Sub agregar_MouseLeave(sender As Object, e As EventArgs) Handles rectAgregar.MouseLeave
-        rectAgregar.BackColor = Color.FromArgb(98, 149, 40)
-        lblNuevo.BackColor = Color.FromArgb(98, 149, 40)
-        lblNuevo.ForeColor = Color.FromArgb(32, 34, 36)
-    End Sub
-
-    Private Sub rectModificar_MouseMove(sender As Object, e As MouseEventArgs) Handles rectModificar.MouseMove, lblModificar.MouseMove
-        rectModificar.BackColor = Color.FromArgb(189, 48, 72)
-        lblModificar.BackColor = Color.FromArgb(189, 48, 72)
-        lblModificar.ForeColor = Color.White
-    End Sub
-
-    Private Sub rectModificar_MouseLeave(sender As Object, e As EventArgs) Handles rectModificar.MouseLeave
-        rectModificar.BackColor = Color.FromArgb(98, 149, 40)
-        lblModificar.BackColor = Color.FromArgb(98, 149, 40)
-        lblModificar.ForeColor = Color.FromArgb(32, 34, 36)
+    Private Sub unhober_botones(sender As Object, e As EventArgs) Handles lblNuevo.MouseLeave, lblModificar.MouseLeave, lblActualizar.MouseLeave, lblFicha.MouseLeave
+        Dim lbl = CType(sender, Label)
+        lbl.ForeColor = Color.FromArgb(22, 23, 24)
     End Sub
 
 
 
 
-    Private Sub rectActualizar_MouseMove(sender As Object, e As MouseEventArgs) Handles rectActualizar.MouseMove, lblActualizar.MouseMove
-        rectActualizar.BackColor = Color.FromArgb(189, 48, 72)
-        lblActualizar.BackColor = Color.FromArgb(189, 48, 72)
-        lblActualizar.ForeColor = Color.White
-    End Sub
 
-    Private Sub rectActualizar_MouseLeave(sender As Object, e As EventArgs) Handles rectActualizar.MouseLeave, lblActualizar.MouseLeave
-        rectActualizar.BackColor = Color.FromArgb(98, 149, 40)
-        lblActualizar.BackColor = Color.FromArgb(98, 149, 40)
-        lblActualizar.ForeColor = Color.FromArgb(32, 34, 36)
-    End Sub
 
-    Private Sub reservas_MouseMove(sender As Object, e As MouseEventArgs) Handles RectangleShape1.MouseMove, lblReservas.MouseMove
-        RectangleShape1.BackColor = Color.FromArgb(189, 48, 72)
-        lblReservas.BackColor = Color.FromArgb(189, 48, 72)
-        lblReservas.ForeColor = Color.White
-    End Sub
 
-    Private Sub reservas_MouseLeave(sender As Object, e As EventArgs) Handles RectangleShape1.MouseLeave, lblReservas.MouseLeave
-        RectangleShape1.BackColor = Color.FromArgb(98, 149, 40)
-        lblReservas.BackColor = Color.FromArgb(98, 149, 40)
-        lblReservas.ForeColor = Color.FromArgb(32, 34, 36)
-    End Sub
+
+
 
     Private Sub dgv_style()
         For i As Integer = 0 To dgvInicio.RowCount - 1
@@ -525,12 +492,46 @@ Public Class Inicio
         Label1.ForeColor = Color.WhiteSmoke
     End Sub
 
-    Private Sub RectangleShape1_MouseLeave(sender As Object, e As EventArgs) Handles RectangleShape1.MouseLeave
 
-    End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs) Handles lblVentas.Click
-        lblReservas.Visible = False
-        RectangleShape1.Visible = False
+        lblFicha.Visible = False
+    End Sub
+
+    Private Sub RectangleShape1_Click(sender As Object, e As EventArgs) Handles lblFicha.Click
+        If target = "clientes" Then
+
+            If dgvInicio.SelectedRows.Count = 1 Then
+                Dim row = dgvInicio.CurrentRow.Index
+                Dim codigo = dgvInicio.Item(0, row).Value
+
+                Dim ficha As New FichaMedica(codigo)
+                ficha.ShowDialog()
+                ficha.Dispose()
+                actualizarData()
+            ElseIf dgvInicio.SelectedRows.Count > 1 Then
+                MsgBox("¡Seleccione solamente un cliente para ver la ficha!", MsgBoxStyle.Information, "Notificación")
+            Else
+                MsgBox("¡Seleccione un cliente para modificar!", MsgBoxStyle.Information, "Notificación")
+            End If
+        End If
+    End Sub
+
+
+
+    Private Sub lblReservas_Click(sender As Object, e As EventArgs) Handles lblReservas.Click
+        Dim reservas As New Reservas
+        reservas.ShowDialog()
+        reservas.Dispose()
+    End Sub
+
+    Private Sub lblReportes_Click(sender As Object, e As EventArgs) Handles lblReportes.Click
+        Try
+            Dim reportes As New Reporte
+            reportes.ShowDialog()
+            reportes.Dispose()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

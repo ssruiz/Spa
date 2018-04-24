@@ -89,4 +89,74 @@
             _encargado = value
         End Set
     End Property
+
+    Private _total As Double
+    Public Property total() As Double
+        Get
+            Return _total
+        End Get
+        Set(ByVal value As Double)
+            _total = value
+        End Set
+    End Property
+
+    Private _entrega As Double
+    Public Property entrega() As Double
+        Get
+            Return _entrega
+        End Get
+        Set(ByVal value As Double)
+            _entrega = value
+        End Set
+    End Property
+
+    Private _saldo As Double
+    Public Property saldo() As Double
+        Get
+            Return _saldo
+        End Get
+        Set(ByVal value As Double)
+            _saldo = value
+        End Set
+    End Property
+
+    Private _estado As String
+    Public Property estado() As String
+        Get
+            Return _estado
+        End Get
+        Set(ByVal value As String)
+            _estado = value
+        End Set
+    End Property
+
+    Private _descripcion As String
+    Public Property descripcion() As String
+        Get
+            Return _descripcion
+        End Get
+        Set(ByVal value As String)
+            _descripcion = value
+        End Set
+    End Property
+
+    Private _descuento As Double
+    Public Property descuento() As Double
+        Get
+            Return _descuento
+        End Get
+        Set(ByVal value As Double)
+            _descuento = value
+        End Set
+    End Property
+
+    Private _formaPago As String
+    Public Property formaPago() As String
+        Get
+            Return _formaPago
+        End Get
+        Set(ByVal value As String)
+            _formaPago = value
+        End Set
+    End Property
 End Class

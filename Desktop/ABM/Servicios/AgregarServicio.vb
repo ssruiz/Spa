@@ -110,12 +110,8 @@ Public Class AgregarServicio
     Private Function controlarCampos() As Boolean
 
         If txtNombre.Text = "" Then
-            MsgBox("Debe ingresar un nombre para el cliente", MsgBoxStyle.Critical, "Atención")
+            MsgBox("Debe ingresar un nombre para el servicio", MsgBoxStyle.Critical, "Atención")
             txtNombre.Focus()
-            Return False
-        ElseIf txtDesc.Text = "" Then
-            MsgBox("Agregue una descripción para el servicio", MsgBoxStyle.Critical, "Atención")
-            txtDesc.Focus()
             Return False
         ElseIf cbTipos.SelectedIndex = 0 Then
             MsgBox("Seleccion un tipo para el servicio", MsgBoxStyle.Critical, "Atención")
@@ -148,5 +144,23 @@ Public Class AgregarServicio
 
     Private Sub soloNumerosTxt(sender As Object, e As KeyPressEventArgs) Handles txtCosto.KeyPress
         soloNumeros(e)
+    End Sub
+
+
+
+    Private Sub txtEntrega_TextChanged(sender As Object, e As EventArgs) Handles txtCosto.TextChanged
+        If txtCosto.Text <> "" Then
+            txtCosto.Text = FormatCurrency(txtCosto.Text, 1)
+            txtCosto.Select(txtCosto.TextLength - 2, 0)
+        Else
+            txtCosto.Text = FormatCurrency(0, 1)
+            txtCosto.Select(txtCosto.TextLength - 2, 0)
+        End If
+    End Sub
+
+    Private Sub txtEntrega_Click(sender As Object, e As EventArgs) Handles txtCosto.Click
+        If txtCosto.Text <> "" Then
+            txtCosto.Select(txtCosto.TextLength - 2, 0)
+        End If
     End Sub
 End Class

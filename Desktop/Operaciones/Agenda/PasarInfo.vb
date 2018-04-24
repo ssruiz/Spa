@@ -45,14 +45,15 @@
             Return _ds
         End Get
     End Property
-    Public Sub cargarDato(ByVal id As String, ByVal nombre As String)
+
+    Public Sub cargarDato(ByVal list As DataSet, ByVal nombre As String)
         Try
-            Dim row = tabla.NewRow
-            row("ID") = id
-            row("Nombre") = nombre
-            _tabla.Rows.Add(row)
+            'Dim row = tabla.NewRow
+            'row("ID") = id
+            'row("Nombre") = nombre
+            _tabla.Merge(list.Tables("tabla"))
         Catch ex As System.Data.ConstraintException
-            MsgBox("Ya agregó ese servicio", MsgBoxStyle.Information, "Info")
+            MsgBox(ex.Message, MsgBoxStyle.Information, "Info")
         End Try
 
         '_ds.Tables.Add(_tabla)

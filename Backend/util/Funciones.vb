@@ -53,4 +53,11 @@ Module Funciones
         End If
         Return CDec(0)
     End Function
+
+    Public Function SafeGetBool(ByRef reader As MySqlDataReader, ByVal Index As Integer) As Boolean
+        If Not reader.IsDBNull(Index) Then
+            Return reader.GetBoolean(Index)
+        End If
+        Return False
+    End Function
 End Module

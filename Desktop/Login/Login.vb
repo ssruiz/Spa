@@ -7,6 +7,7 @@ Public Class Login
         'Me.BackgroundImage = bm
         txtUsuario.TabStop = False
         txtPassw.TabStop = False
+        Me.PerformLayout()
     End Sub
 
     Private Sub btnIngresar_Click(sender As Object, e As EventArgs)
@@ -94,7 +95,7 @@ Public Class Login
         End If
     End Sub
 
-    Private Sub RectangleShape3_Click(sender As Object, e As EventArgs) Handles RectangleShape3.Click
+    Private Sub RectangleShape3_Click(sender As Object, e As EventArgs)
         conexion()
     End Sub
 
@@ -110,16 +111,17 @@ Public Class Login
         Me.WindowState = FormWindowState.Minimized
     End Sub
 
-    Private Sub RectangleShape3_MouseMove(sender As Object, e As MouseEventArgs) Handles RectangleShape3.MouseMove, lblLogin.MouseMove
-        RectangleShape3.BackColor = Color.FromArgb(189, 48, 72)
+    Private Sub RectangleShape3_MouseMove(sender As Object, e As MouseEventArgs) Handles lblLogin.MouseMove
+
         lblLogin.BackColor = Color.FromArgb(189, 48, 72)
         lblLogin.ForeColor = Color.White
     End Sub
 
-    Private Sub RectangleShape3_MouseLeave(sender As Object, e As EventArgs) Handles RectangleShape3.MouseLeave
-        RectangleShape3.BackColor = Color.WhiteSmoke
+    Private Sub RectangleShape3_MouseLeave(sender As Object, e As EventArgs) Handles lblLogin.MouseLeave
+
         lblLogin.BackColor = Color.WhiteSmoke
         lblLogin.ForeColor = Color.FromArgb(32, 34, 36)
+
     End Sub
 
 

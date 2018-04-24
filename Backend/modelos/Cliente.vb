@@ -29,6 +29,16 @@
         End Set
     End Property
 
+    Private _edad As Integer
+    Public Property edad() As Integer
+        Get
+            Return _edad
+        End Get
+        Set(ByVal value As Integer)
+            _edad = value
+        End Set
+    End Property
+
     Private _ci As String
     Public Property ci() As String
         Get
@@ -91,6 +101,16 @@
         End Set
     End Property
 
+    Private _estadoC As String
+    Public Property estadoC() As String
+        Get
+            Return _estadoC
+        End Get
+        Set(ByVal value As String)
+            _estadoC = value
+        End Set
+    End Property
+
     Private _fechaAlta As Date
     Public Property fechaAlta() As Date
         Get
@@ -108,6 +128,59 @@
         End Get
         Set(ByVal value As Date)
             _fechaNaci = value
+        End Set
+    End Property
+
+    Private _dir As String
+    Public Property dir() As String
+        Get
+            Return _dir
+        End Get
+        Set(ByVal value As String)
+            _dir = value
+        End Set
+    End Property
+
+
+    Private _dirDep As String
+    Public Property dirDep() As String
+        Get
+            Return _dirDep
+        End Get
+        Set(ByVal value As String)
+            _dirDep = value
+        End Set
+    End Property
+
+
+    Private _dirCiudad As String
+    Public Property dirCiudad() As String
+        Get
+            Return _dirCiudad
+        End Get
+        Set(ByVal value As String)
+            _dirCiudad = value
+        End Set
+    End Property
+
+
+    Private _dirBarrio As String
+    Public Property dirBarrio() As String
+        Get
+            Return _dirBarrio
+        End Get
+        Set(ByVal value As String)
+            _dirBarrio = value
+        End Set
+    End Property
+
+    Private _nacio As String
+    Public Property nacio() As String
+        Get
+            Return _nacio
+        End Get
+        Set(ByVal value As String)
+            _nacio = value
         End Set
     End Property
 End Class

@@ -29,7 +29,6 @@ Partial Class Login
         Me.txtPassw = New System.Windows.Forms.TextBox()
         Me.lblAdvertencia = New System.Windows.Forms.Label()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
-        Me.RectangleShape3 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.RectangleShape2 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.lblLogin = New System.Windows.Forms.Label()
@@ -96,20 +95,10 @@ Partial Class Login
         Me.ShapeContainer1.Location = New System.Drawing.Point(0, 0)
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
-        Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.RectangleShape3, Me.RectangleShape2, Me.RectangleShape1})
+        Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.RectangleShape2, Me.RectangleShape1})
         Me.ShapeContainer1.Size = New System.Drawing.Size(422, 468)
         Me.ShapeContainer1.TabIndex = 5
         Me.ShapeContainer1.TabStop = False
-        '
-        'RectangleShape3
-        '
-        Me.RectangleShape3.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.RectangleShape3.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.RectangleShape3.BorderColor = System.Drawing.Color.DimGray
-        Me.RectangleShape3.CornerRadius = 10
-        Me.RectangleShape3.Location = New System.Drawing.Point(87, 307)
-        Me.RectangleShape3.Name = "RectangleShape3"
-        Me.RectangleShape3.Size = New System.Drawing.Size(248, 37)
         '
         'RectangleShape2
         '
@@ -142,9 +131,10 @@ Partial Class Login
         Me.lblLogin.Cursor = System.Windows.Forms.Cursors.Default
         Me.lblLogin.Font = New System.Drawing.Font("Segoe UI", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLogin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer))
-        Me.lblLogin.Location = New System.Drawing.Point(174, 310)
+        Me.lblLogin.Location = New System.Drawing.Point(116, 299)
         Me.lblLogin.Name = "lblLogin"
-        Me.lblLogin.Size = New System.Drawing.Size(73, 28)
+        Me.lblLogin.Padding = New System.Windows.Forms.Padding(60, 5, 60, 5)
+        Me.lblLogin.Size = New System.Drawing.Size(193, 38)
         Me.lblLogin.TabIndex = 6
         Me.lblLogin.Text = "LOGIN"
         '
@@ -210,7 +200,6 @@ Partial Class Login
     Friend WithEvents ShapeContainer1 As PowerPacks.ShapeContainer
     Friend WithEvents RectangleShape1 As PowerPacks.RectangleShape
     Friend WithEvents RectangleShape2 As PowerPacks.RectangleShape
-    Friend WithEvents RectangleShape3 As PowerPacks.RectangleShape
     Friend WithEvents lblLogin As Label
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents PictureBox2 As PictureBox

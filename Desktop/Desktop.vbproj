@@ -8,11 +8,12 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>Desktop.My.MyApplication</StartupObject>
     <RootNamespace>Desktop</RootNamespace>
-    <AssemblyName>Desktop</AssemblyName>
+    <AssemblyName>Spa Margaritte</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,17 +22,17 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Desktop.xml</DocumentationFile>
+    <DocumentationFile>Spa Margaritte.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Desktop.xml</DocumentationFile>
+    <DocumentationFile>Spa Margaritte.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -47,6 +48,11 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -54,6 +60,8 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -81,10 +89,40 @@
     <Compile Include="ABM\Clientes\AgregarCliente.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM\Clientes\AgregarTratamiento.Designer.vb">
+      <DependentUpon>AgregarTratamiento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Clientes\AgregarTratamiento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\Clientes\FichaMedica.Designer.vb">
+      <DependentUpon>FichaMedica.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Clientes\FichaMedica.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\Clientes\HistorialCliente.Designer.vb">
+      <DependentUpon>HistorialCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Clientes\HistorialCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ABM\Clientes\ModificarCliente.Designer.vb">
       <DependentUpon>ModificarCliente.vb</DependentUpon>
     </Compile>
     <Compile Include="ABM\Clientes\ModificarCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\Clientes\TratamientoDetalle.Designer.vb">
+      <DependentUpon>TratamientoDetalle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Clientes\TratamientoDetalle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\Clientes\VisualizarHistorialCliente.Designer.vb">
+      <DependentUpon>VisualizarHistorialCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\Clientes\VisualizarHistorialCliente.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM\Funciones.vb" />
@@ -151,17 +189,41 @@
     <Compile Include="Operaciones\Agenda\Agenda.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Operaciones\Agenda\AgendarServiciosPaquete.Designer.vb">
+      <DependentUpon>AgendarServiciosPaquete.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\AgendarServiciosPaquete.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Operaciones\Agenda\PasarInfo.vb" />
+    <Compile Include="Operaciones\Agenda\PersonalizarPaquete.Designer.vb">
+      <DependentUpon>PersonalizarPaquete.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\PersonalizarPaquete.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Operaciones\Agenda\RealizarReserva.Designer.vb">
       <DependentUpon>RealizarReserva.vb</DependentUpon>
     </Compile>
     <Compile Include="Operaciones\Agenda\RealizarReserva.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Operaciones\Agenda\ReservasDelDia.Designer.vb">
+      <DependentUpon>ReservasDelDia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\ReservasDelDia.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Operaciones\Agenda\SeleccionarCliente.Designer.vb">
       <DependentUpon>SeleccionarCliente.vb</DependentUpon>
     </Compile>
     <Compile Include="Operaciones\Agenda\SeleccionarCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\SeleccionarPaquete.Designer.vb">
+      <DependentUpon>SeleccionarPaquete.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Agenda\SeleccionarPaquete.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Operaciones\Agenda\SeleccionarServicio.Designer.vb">
@@ -176,11 +238,35 @@
     <Compile Include="Operaciones\Agenda\VisualizarReserva.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operaciones\Reservas\ReservasCliente.Designer.vb">
-      <DependentUpon>ReservasCliente.vb</DependentUpon>
+    <Compile Include="Operaciones\Reservas\NuevaReservaPaquete.Designer.vb">
+      <DependentUpon>NuevaReservaPaquete.vb</DependentUpon>
     </Compile>
-    <Compile Include="Operaciones\Reservas\ReservasCliente.vb">
+    <Compile Include="Operaciones\Reservas\NuevaReservaPaquete.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\Reservas\NuevaReservaServicio.Designer.vb">
+      <DependentUpon>NuevaReservaServicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Reservas\NuevaReservaServicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\Reservas\Reservas.Designer.vb">
+      <DependentUpon>Reservas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Reservas\Reservas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Reporte.Designer.vb">
+      <DependentUpon>Reporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Reporte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteCaja.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteCaja.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="spaDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -192,8 +278,23 @@
     <EmbeddedResource Include="ABM\Clientes\AgregarCliente.resx">
       <DependentUpon>AgregarCliente.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM\Clientes\AgregarTratamiento.resx">
+      <DependentUpon>AgregarTratamiento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\Clientes\FichaMedica.resx">
+      <DependentUpon>FichaMedica.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\Clientes\HistorialCliente.resx">
+      <DependentUpon>HistorialCliente.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM\Clientes\ModificarCliente.resx">
       <DependentUpon>ModificarCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\Clientes\TratamientoDetalle.resx">
+      <DependentUpon>TratamientoDetalle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\Clientes\VisualizarHistorialCliente.resx">
+      <DependentUpon>VisualizarHistorialCliente.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM\Personal\AgregarPersonal.resx">
       <DependentUpon>AgregarPersonal.vb</DependentUpon>
@@ -225,11 +326,23 @@
     <EmbeddedResource Include="Operaciones\Agenda\Agenda.resx">
       <DependentUpon>Agenda.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Agenda\AgendarServiciosPaquete.resx">
+      <DependentUpon>AgendarServiciosPaquete.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Agenda\PersonalizarPaquete.resx">
+      <DependentUpon>PersonalizarPaquete.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\Agenda\RealizarReserva.resx">
       <DependentUpon>RealizarReserva.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Agenda\ReservasDelDia.resx">
+      <DependentUpon>ReservasDelDia.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\Agenda\SeleccionarCliente.resx">
       <DependentUpon>SeleccionarCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Agenda\SeleccionarPaquete.resx">
+      <DependentUpon>SeleccionarPaquete.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\Agenda\SeleccionarServicio.resx">
       <DependentUpon>SeleccionarServicio.vb</DependentUpon>
@@ -237,8 +350,21 @@
     <EmbeddedResource Include="Operaciones\Agenda\VisualizarReserva.resx">
       <DependentUpon>VisualizarReserva.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\Reservas\ReservasCliente.resx">
-      <DependentUpon>ReservasCliente.vb</DependentUpon>
+    <EmbeddedResource Include="Operaciones\Reservas\NuevaReservaPaquete.resx">
+      <DependentUpon>NuevaReservaPaquete.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Reservas\NuevaReservaServicio.resx">
+      <DependentUpon>NuevaReservaServicio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Reservas\Reservas.resx">
+      <DependentUpon>Reservas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Reporte.resx">
+      <DependentUpon>Reporte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ReporteCaja.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteCaja.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -269,7 +395,6 @@
   <ItemGroup>
     <Folder Include="Operaciones\Compras\" />
     <Folder Include="Operaciones\Ventas\" />
-    <Folder Include="Resources\Iconos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Backend\Backend.vbproj">
@@ -291,6 +416,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\flechaIzquierda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Iconos\icono.ico" />
+    <Content Include="Resources\Iconos\iconosistema.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

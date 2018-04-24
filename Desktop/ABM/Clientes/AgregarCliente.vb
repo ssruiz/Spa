@@ -6,9 +6,20 @@ Public Class AgregarCliente
     Dim agregados = 0
     Private Sub AgregarCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cbSexo.SelectedIndex = 0
+        cbEstadoC.SelectedIndex = 0
+        centrarElementos()
         txtNombre.Focus()
     End Sub
 
+    Private Sub centrarElementos()
+        Me.SuspendLayout()
+        gbDatosPersonales.Left = (Me.ClientSize.Width / 2) - (gbDatosPersonales.Width / 2)
+        lblTitulo.Left = (Me.ClientSize.Width / 2) - (lblTitulo.Width / 2)
+        Panel4.Left = (Me.ClientSize.Width / 2) - (Panel4.Width / 2)
+        gbFichaMed.Left = gbDatosPersonales.Left
+        gbAntecedentesEnfer.Left = gbDatosPersonales.Left
+        Me.ResumeLayout()
+    End Sub
     Private Sub guardarCliente(sender As Object, e As EventArgs) Handles RectangleShape1.Click, lblGUARDAR.Click
         Try
             If controlarCampos() Then
@@ -21,16 +32,86 @@ Public Class AgregarCliente
                 clienteNuevo.email = txtEmail.Text
                 clienteNuevo.tel = txtTelefono.Text
                 clienteNuevo.ruc = txtRUC.Text
+                clienteNuevo.dir = txtDir.Text
+                clienteNuevo.dirDep = txtDepartamento.Text
+                clienteNuevo.dirCiudad = txtCiudad.Text
+                clienteNuevo.dirBarrio = txtBarrio.Text
+                clienteNuevo.nacio = txtNacionalidad.Text
                 If cbSexo.SelectedIndex = 1 Then
                     clienteNuevo.sex = "F"
                 Else
                     clienteNuevo.sex = "M"
                 End If
-                Dim fechaNac = txtDia.Text + "/" + txtMes.Text + "/" + txtAnho.Text
-                Dim fech = DateTime.Parse(fechaNac).Date
+
+                'Dim fech = DateTime.Parse(fechaNac).Date
                 'Date.TryParseExact(fechaNac, "dd/mm/yyyy", CultureInfo.InvariantCulture, DateTimeStyle.None, out fech)
-                clienteNuevo.fechaNaci = fech
-                clieDao.guardarCliente(clienteNuevo)
+                clienteNuevo.edad = CInt(txtEdad.Text)
+                If cbEstadoC.SelectedIndex = 1 Then
+                    clienteNuevo.estadoC = "S"
+                ElseIf cbEstadoC.SelectedIndex = 2 Then
+                    clienteNuevo.estadoC = "C"
+                ElseIf cbEstadoC.SelectedIndex = 3 Then
+                    clienteNuevo.estadoC = "V"
+                ElseIf cbEstadoC.SelectedIndex = 4 Then
+                    clienteNuevo.estadoC = "D"
+                End If
+
+                Dim idCli = clieDao.guardarCliente(clienteNuevo)
+                Dim ficha As New FichaM
+                ficha.idCliente = idCli
+                ficha.anteM = txtAntMadre.Text
+                ficha.anteP = txtAntPadre.Text
+                ficha.anteH = txtAntHermanos.Text
+                ficha.anteHj = txtAntHijos.Text
+                ficha.anteAlerg = r1Alérgicos.Checked
+                ficha.anteAsm = r1Asma.Checked
+                ficha.anteCardio = r1Cardio.Checked
+                ficha.anteDig = r1Digestivos.Checked
+                ficha.anteGenit = r1Genito.Checked
+                ficha.anteMeta = r1Metabol.Checked
+                ficha.anteNeop = r1Neoplasicos.Checked
+                ficha.anteOsteo = r1Osteo.Checked
+                ficha.anteResp = r1Respiratorios.Checked
+                ficha.anteAudioV = r1AudioV.Checked
+                ficha.anteCiru = r1Cirugias.Checked
+                ficha.anteNeuro = r1Neuro.Checked
+                ficha.antePsico = r1Psico.Checked
+                ficha.anteTransfu = r1Transfu.Checked
+                ficha.anteInter = r1Interna.Checked
+                ficha.anteOtros = txtOtrosAntecedentes.Text
+                Dim idFicha = clieDao.guardarFichaCliente(ficha)
+
+
+                If txtEnfermedad.Text.Length > 0 Then
+                    Dim historial As New Historial
+                    historial.idFicha = idFicha
+                    historial.imc = txtImc.Text
+                    historial.enfermedad = txtEnfermedad.Text
+                    historial.altura = txtAltura.Text
+                    historial.bd = txtBD.Text
+                    historial.bi = txtBI.Text
+                    historial.bomb = txtBOMB.Text
+                    historial.cinth = txtCINT.Text
+                    historial.omb = txtOMB.Text
+                    historial.pd = txtPD.Text
+                    historial.peso = txtPeso.Text
+                    historial.pesoI = txtPesoI.Text
+                    historial.pi = txtPI.Text
+                    historial.fecha = Date.Today
+                    clieDao.guardarHistorial(historial)
+                End If
+
+                If cbEncargado.Checked = True Then
+                    Dim encargado As New Encargado
+                    encargado.ci = txtCiEncargado.Text
+                    encargado.apellido = txtApellidoEncargado.Text
+                    encargado.edad = txtEdad.Text
+                    encargado.nombre = txtNombreEncargado.Text
+                    encargado.ocupacion = txtOcupacionEncargado.Text
+                    encargado.telefono = txtTelefonoEncargado.Text
+                    encargado.cliente = idCli
+                    clieDao.guardarEncargado(encargado)
+                End If
                 Dim result As Integer = MessageBox.Show("¡Cliente registrado con éxito Desea continuar agregando? ", "Continuar", MessageBoxButtons.YesNo)
                 If result = DialogResult.No Then
                     Me.DialogResult = DialogResult.OK
@@ -66,9 +147,13 @@ Public Class AgregarCliente
                 MsgBox("Debe seleccionar un sexo para el cliente", MsgBoxStyle.Critical, "Atención")
                 cbSexo.Focus()
                 Return False
-            ElseIf Not IsNumeric(txtDia.Text) Or Not IsNumeric(txtMes.Text) Or Not IsNumeric(txtAnho.Text) Then
-                MsgBox("Ingrese una fecha de nacimiento válida", MsgBoxStyle.Critical, "Atención")
-                txtDia.Focus()
+            ElseIf cbEstadoC.SelectedIndex = 0 Then
+                MsgBox("Debe seleccionar un estado civil para el cliente", MsgBoxStyle.Critical, "Atención")
+                cbSexo.Focus()
+                Return False
+            ElseIf Not IsNumeric(txtEdad.Text) Then
+                MsgBox("Ingrese una edad válida", MsgBoxStyle.Critical, "Atención")
+                txtEdad.Focus()
                 Return False
             ElseIf txtTelefono.Text = "" Then
                 MsgBox("Debe ingresar un teléfono válido", MsgBoxStyle.Critical, "Atención")
@@ -82,9 +167,80 @@ Public Class AgregarCliente
                 MsgBox("Debe ingresar un teléfono válido", MsgBoxStyle.Critical, "Atención")
                 txtTelefono.Focus()
                 Return False
+            ElseIf txtNacionalidad.Text = "" Then
+                MsgBox("Debe ingresar una nacionalidad", MsgBoxStyle.Critical, "Atención")
+                txtNacionalidad.Focus()
+                Return False
+            ElseIf txtdir.Text = "" Then
+                MsgBox("Debe ingresar una dirección", MsgBoxStyle.Critical, "Atención")
+                txtDir.Focus()
+                Return False
+            ElseIf txtDepartamento.Text = "" Then
+                MsgBox("Debe ingresar un departamento", MsgBoxStyle.Critical, "Atención")
+                txtDepartamento.Focus()
+                Return False
+            ElseIf txtCiudad.Text = "" Then
+                MsgBox("Debe ingresar una ciudad", MsgBoxStyle.Critical, "Atención")
+                txtCiudad.Focus()
+                Return False
+            ElseIf txtBarrio.Text = "" Then
+                MsgBox("Debe ingresar un barrio", MsgBoxStyle.Critical, "Atención")
+                txtBarrio.Focus()
+                Return False
             End If
 
-            Dim testAddress = New MailAddress(txtEmail.Text)
+            If txtEnfermedad.Text.Length > 0 Then
+
+                If txtPeso.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtPeso.Focus()
+                    Return False
+                ElseIf txtPesoI.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtPesoI.Focus()
+                    Return False
+                ElseIf txtAltura.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtAltura.Focus()
+                    Return False
+                ElseIf txtImc.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtImc.Focus()
+                    Return False
+                ElseIf txtCINT.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtCINT.Focus()
+                    Return False
+                ElseIf txtOMB.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtOMB.Focus()
+                    Return False
+                ElseIf txtBOMB.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtBOMB.Focus()
+                    Return False
+                ElseIf txtPD.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtPD.Focus()
+                    Return False
+                ElseIf txtBD.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtBD.Focus()
+                    Return False
+                ElseIf txtPI.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtPI.Focus()
+                    Return False
+                ElseIf txtBI.Text = "" Then
+                    MsgBox("Si va registrar una enfermedad tratada actualmente, rellene todos los campos", MsgBoxStyle.Critical, "Atención")
+                    txtBI.Focus()
+                    Return False
+                End If
+            End If
+            If txtEmail.Text <> "" Then
+                Dim testAddress = New MailAddress(txtEmail.Text)
+            End If
+
 
 
 
@@ -103,9 +259,8 @@ Public Class AgregarCliente
         txtApellido.Text = ""
         txtCI.Text = ""
         cbSexo.SelectedIndex = 0
-        txtDia.Text = "dd"
-        txtMes.Text = "mm"
-        txtAnho.Text = "aaaa"
+        txtEdad.Text = ""
+
         txtRUC.Text = ""
 
         txtTelefono.Text = ""
@@ -175,55 +330,56 @@ Public Class AgregarCliente
 
     '' ---------------------- ELEMENTOS  VARIOS
 
-    Private Sub fecha_foco(sender As Object, e As EventArgs) Handles txtDia.Enter
+    Private Sub fecha_foco(sender As Object, e As EventArgs) Handles txtEdad.Enter
 
-        txtDia.ForeColor = Color.FromArgb(22, 23, 24)
-        If txtDia.Text = "dd" Then
-            txtDia.Text = ""
+        txtEdad.ForeColor = Color.FromArgb(22, 23, 24)
+        If txtEdad.Text = "dd" Then
+            txtEdad.Text = ""
         End If
 
     End Sub
 
-    Private Sub txtMes_Enter(sender As Object, e As EventArgs) Handles txtMes.Enter
-        txtMes.ForeColor = Color.FromArgb(22, 23, 24)
-        If txtMes.Text = "mm" Then
-            txtMes.Text = ""
-        End If
 
-    End Sub
 
-    Private Sub txtAnho_Enter(sender As Object, e As EventArgs) Handles txtAnho.Enter
-        txtAnho.ForeColor = Color.FromArgb(22, 23, 24)
-        If txtAnho.Text = "aaaa" Then
-            txtAnho.Text = ""
-        End If
 
-    End Sub
 
-    Private Sub txtDia_Leave(sender As Object, e As EventArgs) Handles txtDia.Leave
-        If txtDia.Text = "" Then
-            txtDia.Text = "dd"
-            txtDia.ForeColor = Color.FromArgb(100, 100, 100)
+    Private Sub txtDia_Leave(sender As Object, e As EventArgs) Handles txtEdad.Leave
+        If txtEdad.Text = "" Then
+            txtEdad.Text = ""
+            txtEdad.ForeColor = Color.FromArgb(100, 100, 100)
         End If
     End Sub
 
-    Private Sub soloNumerosTxt(sender As Object, e As KeyPressEventArgs) Handles txtDia.KeyPress, txtMes.KeyPress, txtAnho.KeyPress, txtCI.KeyPress
+    Private Sub soloNumerosTxt(sender As Object, e As KeyPressEventArgs) Handles txtEdad.KeyPress, txtCI.KeyPress, txtEdadEncargado.KeyPress
         soloNumeros(e)
     End Sub
 
-    Private Sub txtMes_Leave(sender As Object, e As EventArgs) Handles txtMes.Leave
-        If txtMes.Text = "" Then
-            txtMes.Text = "mm"
-            txtMes.ForeColor = Color.FromArgb(100, 100, 100)
+
+
+
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles cbEncargado.CheckedChanged
+        If cbEncargado.Checked = False Then
+            gbEncargado.Visible = False
+            gbDatosPersonales.Height = gbDatosPersonales.Height - gbEncargado.Height
+            gbFichaMed.Top = gbDatosPersonales.Bottom + 10
+
+        Else
+            gbEncargado.Visible = True
+            gbDatosPersonales.Height = gbDatosPersonales.Height + gbEncargado.Height
+            gbFichaMed.Top = gbDatosPersonales.Bottom + 10
         End If
     End Sub
 
-    Private Sub txtAnho_Leave(sender As Object, e As EventArgs) Handles txtAnho.Leave
-        If txtAnho.Text = "" Then
-            txtAnho.Text = "aaaa"
-            txtAnho.ForeColor = Color.FromArgb(100, 100, 100)
-        End If
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles r1Cardio.CheckedChanged
+
     End Sub
 
+    Private Sub Label32_Click(sender As Object, e As EventArgs) Handles Label32.Click
 
+    End Sub
+
+    Private Sub Panel4_Paint(sender As Object, e As PaintEventArgs) Handles Panel4.Paint
+
+    End Sub
 End Class
